@@ -10,7 +10,12 @@ call vundle#begin()
     Plugin 'scrooloose/nerdtree'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'gosukiwi/vim-atom-dark'
-    Plugin 'rust-lang/rust.vim'
+
+    " optionally load additional plugins from ~/.vimrc.plugins
+    if filereadable($HOME . "/.vimrc.plugins")
+      source ~/.vimrc.plugins
+    endif
+
 call vundle#end()
 
 filetype plugin indent on " Required for vundle
@@ -99,3 +104,8 @@ noremap <C-\> :vsplit<CR>
 
 "ctrlp settings
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" optionally load additional settings from ~/.vimrc.local
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
