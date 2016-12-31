@@ -71,6 +71,14 @@ au BufNewFile,BufRead *.py
     \ fileformat=unix
     \ encoding=utf-8
 
+" yml settings
+au BufNewFile,BufRead *.yml
+    \ set tabstop=2
+    \ softtabstop=2
+    \ shiftwidth=2
+    \ fileformat=unix
+    \ encoding=utf-8
+
 " Treat Vagrantfile as ruby
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 
