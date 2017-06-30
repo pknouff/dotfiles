@@ -23,6 +23,13 @@ filetype plugin indent on " Required for vundle
 set t_Co=256 " enable 256 colors
 colorscheme atom-dark-256
 
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+
 " Status line
 set statusline=%F%m%r%h%w\ 
 set statusline+=%{fugitive#statusline()}\
@@ -83,12 +90,12 @@ au BufNewFile,BufRead *.yml
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 
 " ruby settings
-au BufNewFile,BufRead *.rb, Vagrantfile
+au BufNewFile,BufRead *.rb
     \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set fileformat=unix
-    \ set encoding=utf-8
+    \ softtabstop=2
+    \ shiftwidth=2
+    \ fileformat=unix
+    \ encoding=utf-8
 
 " html/css/js settings
 au BufNewFile,BufRead *.js, *.html, *.css
