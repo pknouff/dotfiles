@@ -10,6 +10,7 @@ call vundle#begin()
     Plugin 'scrooloose/nerdtree'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'gosukiwi/vim-atom-dark'
+    Plugin 'vim-syntastic/syntastic'
 
     " optionally load additional plugins from ~/.vimrc.plugins
     if filereadable($HOME . "/.vimrc.plugins")
@@ -30,7 +31,15 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+" syntastic settings
+let g:seyntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
 " Status line
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline=%F%m%r%h%w\ 
 set statusline+=%{fugitive#statusline()}\
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
