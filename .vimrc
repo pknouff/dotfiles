@@ -7,10 +7,7 @@ call vundle#begin()
     Plugin 'gmarik/Vundle.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'gosukiwi/vim-atom-dark'
-    Plugin 'vim-syntastic/syntastic'
 
     " optionally load additional plugins from ~/.vimrc.plugins
     if filereadable($HOME . "/.vimrc.plugins")
@@ -31,19 +28,7 @@ if &term =~ '256color'
   set t_ut=
 endif
 
-" syntastic settings
-let g:seyntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-" Status line
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline=%F%m%r%h%w\ 
-set statusline+=%{fugitive#statusline()}\
-set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
-set statusline+=\ [line\ %l\/%L]
+set relativenumber
 
 " Tab settings
 set smartindent
@@ -52,30 +37,11 @@ set shiftwidth=4
 set expandtab
 set number
 
-" Search settings
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-
-" show the matching part of the pair for [] {} and ()
-set showmatch
-
 " Key bindings
 inoremap jj <Esc>
-noremap Y y$
-
-" Easily enable/disable paste mode
-nnoremap <leader>p :set invpaste paste?<CR>
-set pastetoggle=<leader>p
-set showmode
 
 " Disable paste mode when leaving Insert Mode 
 au InsertLeave * set nopaste
-
-" Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
 
 " Syntax settings
 syntax on
@@ -106,28 +72,10 @@ au BufNewFile,BufRead *.rb
     \ fileformat=unix
     \ encoding=utf-8
 
-" html/css/js settings
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
 " Enable spell check for git commit messages
 if has('spell')
     au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 endif
-
-" split pane management
-set splitright splitbelow
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-noremap <C-\> :vsplit<CR>
-
-"ctrlp settings
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " optionally load additional settings from ~/.vimrc.local
 if filereadable($HOME . "/.vimrc.local")
